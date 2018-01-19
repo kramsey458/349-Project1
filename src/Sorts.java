@@ -1,5 +1,7 @@
 public class Sorts {
 
+
+
     public static void selectionSort(int[] arr, int N) {
         //int length = N;
         for (int i = 0; i < N - 1; i++) {
@@ -21,7 +23,7 @@ public class Sorts {
 
     private static void mergeSort(int[] arr, int first, int last) {
         if (first < last) {
-            int middle = (first + last) / 2;
+            int middle = first + (last-first) / 2;
             mergeSort(arr, first, middle);
             mergeSort(arr, middle + 1, last);
             mergeSortedHalves(arr, first, middle, last);
@@ -29,65 +31,51 @@ public class Sorts {
     }
 
     private static void mergeSortedHalves(int arr[], int l, int m, int r) {
-
-        int[] temp = new int[r - l + 1];
-        int index1 = l;
-        int index2 = m+1;
-        int index = 0;
-
-        while(index1 < m && index2 < r){
-            if(arr[index1] < arr[index2]){
-                temp[index++] = arr[index1++];
-            } else {
-                temp[index++] = arr[index2++];
+        int n1 = m - l + 1;
+        int n2 = r - m;
+        /* Create temp arrays */
+        int L[] = new int [n1];
+        int R[] = new int [n2];
+        /*Copy data to temp arrays*/
+        for (int i=0; i<n1; ++i)
+            L[i] = arr[l + i];
+        for (int j=0; j<n2; ++j)
+            R[j] = arr[m + 1+ j];
+        /* Merge the temp arrays */
+        // Initial indexes of first and second subarrays
+        int i = 0, j = 0;
+        // Initial index of merged subarry array
+        int k = l;
+        while (i < n1 && j < n2)
+        {
+            if (L[i] <= R[j])
+            {
+                arr[k] = L[i];
+                i++;
             }
-        }
-        int count, max;
-        if(index1 < (index2 - m)) {
-            count = index1;
-            max = m;
-        } else {
-            count = index2;
-            max = r;
-        }
-
-        while(count < max){
-            System.out.println("\n!!!!!!! " + temp[index] + "Length: " + (r-l+1));
-            temp[index++] = arr[count++];
-        }
-
-        for(index = 0; index < r - l + 1; index++){
-            System.out.println("\n!!!!!!! " + temp[index] + "Length: " + (r-l+1));
-            arr[index] = temp[index];
-        }
-
-        /*
-        for(index = 0; index1 < m && index2 < r; index++){
-            if(arr[index1] < arr[index2]){
-                temp[index] = arr[index1++];
-            } else {
-                temp[index] = arr[index2++];
+            else
+            {
+                arr[k] = R[j];
+                j++;
             }
+            k++;
         }
-        int count, max;
-        if(index1 < index2) {
-            count = index1;
-            max = m;
-        } else {
-            count = index2;
-            max = r;
+        /* Copy remaining elements of L[] if any */
+        while (i < n1)
+        {
+            arr[k] = L[i];
+            i++;
+            k++;
         }
-
-        while(count < max){
-            temp[index] = arr[count];
+        /* Copy remaining elements of R[] if any */
+        while (j < n2)
+        {
+            arr[k] = R[j];
+            j++;
+            k++;
         }
-
-        for(index = 0; index < arr.length; index++){
-            System.out.println("\n!!!!!!! " + index + "Length: " + arr.length);
-            arr[index] = temp[index];
-        }
-        */
     }
+
     
 
     public static void quickSort(int[] list, int N) {
@@ -142,7 +130,7 @@ public class Sorts {
                 indexL++;
             }
 
-            while (arr[indexR] > pivot) {
+            while (arr[indexR] > pivot && !(indexR >= indexL)) {
                 indexR--;
             }
             if(indexL < indexR) {
@@ -156,7 +144,7 @@ public class Sorts {
 
         temp = arr[indexL];
         arr[indexL] = pivot;
-        arr[right] = arr[indexL];
+        arr[right] = temp;
 
         return indexL;
         }
