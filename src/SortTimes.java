@@ -1,3 +1,5 @@
+//Kyler Ramsey karamsey@calpoly.edu + Liam Lefferts Ljcates@calpoly.edu - 1/19/18 Project 1
+
 import java.util.Random;
 
 public class SortTimes {
@@ -34,7 +36,7 @@ public class SortTimes {
                 Sorts.quickSort(arr3, i);
                 endTime = getTime();
                 quickRuntime = computeTime(startTime, endTime);
-                System.out.println("N=" + i + ":\t" + "T_ss= " + selectionRuntime +",\tT_ms=" + mergeRuntime + ",\tT_qs= " + quickRuntime);
+                System.out.println("N=" + i + ":     " + "T_ss= " + selectionRuntime +",     T_ms=" + mergeRuntime + ",     T_qs= " + quickRuntime);
             }
             System.out.println();
         }

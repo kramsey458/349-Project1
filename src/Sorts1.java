@@ -1,3 +1,5 @@
+//Kyler Ramsey karamsey@calpoly.edu + Liam Lefferts Ljcates@calpoly.edu - 1/19/18 Project 1
+
 public class Sorts1 {
 
     private static int count;

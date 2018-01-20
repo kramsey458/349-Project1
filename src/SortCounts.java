@@ -1,3 +1,5 @@
+//Kyler Ramsey karamsey@calpoly.edu + Liam Lefferts Ljcates@calpoly.edu - 1/19/18 Project 1
+
 import java.util.Random;
 
 public class SortCounts {
@@ -23,9 +25,9 @@ public class SortCounts {
             selectionCount = quickCount = mergeCount = 0;
             selectionTotal = quickTotal = mergeTotal = 0;
            for (int j = 0; j < 100; j++) {
-            for (int k = 0; k < i; k++){
+               for (int k = 0; k < i; k++) {
                 arr1[k] = arr2[k] = arr3[k] = rand.nextInt(i);
-            }
+                }
 
                 selectionCount = Sorts1.selectionSort(arr1, i);
                 selectionTotal += selectionCount;
@@ -37,7 +39,7 @@ public class SortCounts {
                 quickTotal += quickCount;
 
                 }
-                System.out.println("N=" + i + ": " + "C_ss= " + selectionTotal/100 +",\tC_ms=" + mergeTotal/100 + ",\tC_qs= " + quickTotal/100);
+                System.out.println("N=" + i + ":     " + "C_ss= " + selectionTotal/100 +",     C_ms=" + mergeTotal/100 + ",     C_qs= " + quickTotal/100);
         }
         System.out.println();
     }
